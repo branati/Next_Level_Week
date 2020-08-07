@@ -1,0 +1,117 @@
+mkdir server
+cd server
+npm init -y
+code .
+mkdir src
+cd src
+touch server.ts
+
+
+npm install typescript -D
+
+npx tsc --init
+editar tsconfig.json e inserir linha --> "target": "ES2017",
+
+
+editar o package.json e inserir:
+  "scripts": {
+    "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+  },
+
+
+
+npm install ts-node-dev -D
+
+
+editar package.json criar:
+"scripts": {
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+}
+
+npm start
+
+npm install express
+npm install @types/express -D
+
+
+----------------------------------------------------------------------------------------------
+Ferramenta para REST -------------> http://insomnia.rest  instalar insomnia core
+Sugestão: Criar um novo workspace
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+// Métodos
+// GET: Buscar ou lista uma informação
+// POST: Criar alguma nova informação
+// PUT: Atualizar uma informação existente
+// DELETE: Deletar uma informação existente
+
+// Corpo (Request Body): Dados para criação ou atualização de um registro
+// Route Params: Identificar qual rescurso eu quero atualizar ou deletar
+// Query Params: Paginação, filtros, ordenação
+
+app.get('/users', (request, response) => {
+    const users = [
+        { name: 'Renato', age: 38},
+        { name: 'Renato2', age: 38},
+        { name: 'Renato3', age: 38}
+    ]
+    return response.json(users)
+
+    //return response.send('hello')
+    console.log('acessou a rota');
+})
+
+app.post('/users', (request, response) => {
+    console.log(request.body);
+
+    const users = [
+        { name: 'Renato', age: 38},
+        { name: 'Renato2', age: 38},
+        { name: 'Renato3', age: 38}
+    ]
+    return response.json(users)
+
+    //return response.send('hello')
+    console.log('acessou a rota');
+})
+----------------------------------------------------------------------------------
+
+npm install knex sqlite3
+
+knex - permite que seja possível fazer as queries no banco de dados via javascript
+sqlite3 - banco de dados
+
+-------------------knex-----------------------------------------------------------
+
+criar em "scripts":{}
+    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest"
+
+após isso executar (npm run knex:migrate) para aplicar o script no banco de dados
+----------------------------------------------------------------------------------
+Instalar extensão do vscode chamado SQLite
+
+
+
+
+=================JSON de POST==========================================
+{
+  "name": "Renato Cunha",
+  "avatar": "https://avatars2.githubusercontent.com/u/10540006?s=60&v=4",
+  "whatsapp": "123123123",
+  "bio": "Biografia do Renato",
+  "subject": "Matemática",
+  "cost": 100,
+  "schedule": [
+    { "week_day": 1, "from": "08:00", "to": "12:00" },
+    { "week_day": 3, "from": "10:00", "to": "18:00" },
+    { "week_day": 4, "from": "08:00", "to": "12:00" }
+    ]
+}
+   
+=======================CORS==============================================
+Permitir que o frontend em um endereço diferente acesse nossa API
+npm install cors
+npm install @types/cors -D
+=========================================================================
+   
